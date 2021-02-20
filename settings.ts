@@ -13,8 +13,10 @@ export const ADMIN_SERVER_HOST: string =
 export const ADMIN_SERVER_PORT: number = process.env.ADMIN_SERVER_PORT
     ? parseInt(process.env.ADMIN_SERVER_PORT)
     : 3030
+export const WEBPACK_DEV_HOST: string =
+    process.env.WEBPACK_DEV_HOST || "localhost"
 export const WEBPACK_DEV_URL: string =
-    process.env.WEBPACK_DEV_URL || "http://localhost:8090"
+    process.env.WEBPACK_DEV_URL || `http://${WEBPACK_DEV_HOST}:8090`
 export const BAKED_BASE_URL: string =
     process.env.BAKED_BASE_URL ||
     `http://${ADMIN_SERVER_HOST}:${ADMIN_SERVER_PORT}`

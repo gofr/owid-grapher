@@ -1,3 +1,6 @@
+require("dotenv").config()
+const { WEBPACK_DEV_HOST } = process.env
+
 const path = require("path")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const ManifestPlugin = require("webpack-manifest-plugin")
@@ -95,7 +98,7 @@ module.exports = (env, argv) => {
             new Dotenv(),
         ],
         devServer: {
-            host: "localhost",
+            host: WEBPACK_DEV_HOST,
             port: 8090,
             contentBase: "public",
             disableHostCheck: true,

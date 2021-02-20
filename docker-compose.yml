@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+    db:
+        build: ./db
+        volumes:
+            - owid-db:/var/lib/mysql
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
+            MYSQL_DATABASE: ${DB_NAME}
+    app:
+        build: .
+        # TODO: Wait until the database is ready.
+        command: ["sh", "-c", "yarn && exec yarn dev"]
+        depends_on:
+            - db
+        ports:
+            - "3030:3030"
+            - "8090:8090"
+        working_dir: /app
+        volumes:
+            - ./:/app
+
+volumes:
+    owid-db:
